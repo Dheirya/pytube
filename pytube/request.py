@@ -4,11 +4,11 @@ import json
 import logging
 import re
 import socket
-import random
 from functools import lru_cache
 from urllib import parse
 from urllib.error import URLError
 from urllib.request import Request, urlopen
+from fake_headers import Headers
 
 from pytube.exceptions import RegexMatchError, MaxRetriesExceeded
 from pytube.helpers import regex_search
@@ -24,7 +24,8 @@ def _execute_request(
     data=None,
     timeout=socket._GLOBAL_DEFAULT_TIMEOUT
 ):
-    base_headers = {"User-Agent": str(random.choice(list(open('user-agents.txt')))), "accept-language": "en-US,en"}
+    headers = Headers()
+    base_headers = headers.generate()
     if headers:
         base_headers.update(headers)
     if data:
