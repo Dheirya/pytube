@@ -24,8 +24,8 @@ def _execute_request(
     data=None,
     timeout=socket._GLOBAL_DEFAULT_TIMEOUT
 ):
-    headers = Headers()
-    base_headers = headers.generate()
+    headerze = Headers()
+    base_headers = headerze.generate()
     if headers:
         base_headers.update(headers)
     if data:
